@@ -15,7 +15,8 @@ export class ProxyService {
   async fetchAndModify(url: string): Promise<string> {
     try {
       const browser = await this.puppeteer.launch({
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        executablePath: '/usr/bin/chromium',
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
       });
       const page = await browser.newPage();
       await page.goto(url, { waitUntil: 'networkidle2' });
